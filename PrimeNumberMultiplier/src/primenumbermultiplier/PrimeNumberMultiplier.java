@@ -34,6 +34,8 @@ public class PrimeNumberMultiplier {
         createTable(value, primeArray);
     }
     
+    
+    //Method to receive the users input
     public int getInput(){
         Scanner user_input = new Scanner(System.in);
         
@@ -44,10 +46,12 @@ public class PrimeNumberMultiplier {
         return value;
     }
     
+    //Method to create the array of Prime Numbers
+    //
+    // I chose to use a switch for the first 10 minutes as a way of saving 
+    // time, because these will be the most frequently accessed
     public int[] createArray(int max){
         int[] primeNumber = new int[max];
-        
-        
         
         for(int i = 0; i < max; i++){     
             switch(i){
@@ -89,26 +93,35 @@ public class PrimeNumberMultiplier {
         return primeNumber;
     }
     
+    
+    //This method calculates any Prime Numbers from the 11th exception onwards
+    //
+    // This method takes the number stored in the previous array value, and 
+    // loops from that number plus one (current) checking if it can be divided 
+    // without a remainder (divisible).
+    //
+    // The loop stops when a divisible number is found, or if the number that 
+    // current is being divided by is one less than current.
     public int calculatePrime(int[] array, int position){
         int primeInt = 0;
         boolean isPrime = false;
         int divisible;
         int current = array[position-1] + 1;
-        int j = 0;
+        int divideBy = 0;
         
         while(isPrime == false){
             divisible = 0;
-            j = 2;
-            while(divisible == 0 && j < current){                                
-                int remainder = current % j;
+            divideBy = 2;
+            while(divisible == 0 && divideBy < current){                                
+                int remainder = current % divideBy;
                 if(remainder == 0){
                     divisible++;
                 }
-                j++;
+                divideBy++;
             }
             
                 
-            if(j == current && divisible == 0){
+            if(divideBy == current && divisible == 0){
                 primeInt = current;
                 isPrime = true;
             }else{
@@ -120,6 +133,8 @@ public class PrimeNumberMultiplier {
         return primeInt;
     }
     
+    
+    //This method displays the multiplication table
     public void createTable(int value, int[] array){
         int N = value;
         
